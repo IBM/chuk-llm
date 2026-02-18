@@ -270,7 +270,6 @@ chuk-llm/
 
 - 💬 [Discussions](https://github.com/chrishayuk/chuk-llm/discussions) - Ask questions
 - 🐛 [Issues](https://github.com/chrishayuk/chuk-llm/issues) - Report bugs
-- 📧 [Email](mailto:chrishayuk@somejunkmailbox.com) - Direct contact
 
 ## Recognition
 

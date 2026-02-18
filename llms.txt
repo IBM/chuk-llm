@@ -1,7 +1,7 @@
 # ChukLLM - AI Agent Documentation
 
 ## Project Overview
-ChukLLM is a unified Python library for Large Language Model (LLM) providers with production-ready features including real-time streaming, function calling, middleware support, automatic session tracking, dynamic model discovery, and intelligent system prompt generation.
+ChukLLM is a unified Python library for Large Language Model (LLM) providers with real-time streaming, function calling, middleware support, automatic session tracking, dynamic model discovery, and intelligent system prompt generation.
 
 ## Quick Start for AI Agents
 
@@ -236,4 +236,4 @@ logging.basicConfig(level=logging.DEBUG)
 - v0.6.x: Initial release
 
 ## License
-MIT License - See LICENSE file for details
+Apache 2.0 License - See LICENSE file for details

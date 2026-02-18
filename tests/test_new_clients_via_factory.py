@@ -6,7 +6,6 @@ import os
 import sys
 
 # Add src to path
-sys.path.insert(0, '/Users/chrishay/chris-source/chuk-ai/chuk-llm/src')
 
 from chuk_llm.llm.client import get_client
 

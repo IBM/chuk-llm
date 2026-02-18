@@ -10,11 +10,9 @@ class TestModuleImports:
 
     def test_version_info(self):
         """Test version information is available."""
-        from chuk_llm.llm import __version__, __author__, __email__
+        from chuk_llm.llm import __version__
 
         assert isinstance(__version__, str)
-        assert isinstance(__author__, str)
-        assert isinstance(__email__, str)
 
     def test_get_version(self):
         """Test get_version function."""

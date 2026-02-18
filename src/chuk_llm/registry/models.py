@@ -7,13 +7,13 @@ capability resolution, and intelligent model selection across all providers.
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class QualityTier(str, Enum):
+class QualityTier(StrEnum):
     """Quality tier classification for models."""
 
     BEST = "best"  # Frontier models (GPT-4o, Claude 3.5 Sonnet, Gemini Pro)

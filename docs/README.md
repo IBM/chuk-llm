@@ -29,7 +29,6 @@ Stateful conversations with memory, branching, and persistence support.
 
 - 💬 [GitHub Discussions](https://github.com/chrishayuk/chuk-llm/discussions)
 - 🐛 [Issue Tracker](https://github.com/chrishayuk/chuk-llm/issues)
-- 📧 [Email Support](mailto:chrishayuk@somejunkmailbox.com)
 
 ## Contributing
 

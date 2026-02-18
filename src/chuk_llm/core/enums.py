@@ -6,10 +6,10 @@ Type-safe enums for providers, features, roles, and other constants.
 No more magic strings!
 """
 
-from enum import Enum
+from enum import StrEnum
 
 
-class Provider(str, Enum):
+class Provider(StrEnum):
     """LLM Provider enumeration."""
 
     OPENAI = "openai"
@@ -31,7 +31,7 @@ class Provider(str, Enum):
     LLAMA_CPP = "llamacpp"
 
 
-class Feature(str, Enum):
+class Feature(StrEnum):
     """Model feature capabilities."""
 
     TEXT = "text"  # Basic text completion capability
@@ -54,7 +54,7 @@ class Feature(str, Enum):
             raise ValueError(f"Unknown feature: {value}") from exc
 
 
-class MessageRole(str, Enum):
+class MessageRole(StrEnum):
     """Chat message role."""
 
     SYSTEM = "system"
@@ -64,7 +64,7 @@ class MessageRole(str, Enum):
     FUNCTION = "function"  # Deprecated but supported for backwards compatibility
 
 
-class FinishReason(str, Enum):
+class FinishReason(StrEnum):
     """Completion finish reason."""
 
     STOP = "stop"
@@ -74,7 +74,7 @@ class FinishReason(str, Enum):
     ERROR = "error"
 
 
-class ContentType(str, Enum):
+class ContentType(StrEnum):
     """Content part type for multimodal messages."""
 
     TEXT = "text"
@@ -85,13 +85,13 @@ class ContentType(str, Enum):
     AUDIO_DATA = "audio_data"
 
 
-class ToolType(str, Enum):
+class ToolType(StrEnum):
     """Tool/function call types."""
 
     FUNCTION = "function"
 
 
-class ReasoningGeneration(str, Enum):
+class ReasoningGeneration(StrEnum):
     """Reasoning model generations."""
 
     O1 = "o1"
@@ -102,7 +102,7 @@ class ReasoningGeneration(str, Enum):
     UNKNOWN = "unknown"
 
 
-class ResponsesTextFormatType(str, Enum):
+class ResponsesTextFormatType(StrEnum):
     """Responses API text format types."""
 
     TEXT = "text"

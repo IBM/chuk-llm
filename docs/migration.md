@@ -217,7 +217,6 @@ If you need help migrating:
 1. Check the [examples folder](../examples/)
 2. Ask in [GitHub Discussions](https://github.com/chrishayuk/chuk-llm/discussions)
 3. Open an [issue](https://github.com/chrishayuk/chuk-llm/issues)
-4. Email: chrishayuk@somejunkmailbox.com
 
 ## Why Migrate?
 

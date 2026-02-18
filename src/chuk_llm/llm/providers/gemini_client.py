@@ -286,7 +286,7 @@ AVAILABLE_GEMINI_MODELS = {
     # Gemini 2.0 series (stable)
     "gemini-2.0-flash",
     "gemini-2.0-flash-lite",
-    # Gemini 1.5 series (production-ready)
+    # Gemini 1.5 series (stable)
     "gemini-1.5-pro",
     "gemini-1.5-flash",
     "gemini-1.5-flash-8b",

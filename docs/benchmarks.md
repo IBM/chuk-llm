@@ -1,6 +1,6 @@
 # Performance Benchmarks
 
-ChukLLM is designed for production use with performance as a key priority.
+ChukLLM is designed for high performance with concurrency as a key priority.
 
 ## Concurrent Execution Benchmarks
 
@@ -53,7 +53,7 @@ print(f"Speedup: {sequential_time/concurrent_time:.1f}x")
 
 ## Provider Latency Comparison
 
-Real benchmark results from production testing:
+Real benchmark results from live testing:
 
 ### OpenAI GPT-4o-mini Performance
 

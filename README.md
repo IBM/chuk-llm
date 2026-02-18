@@ -634,7 +634,7 @@ uvx chuk-llm ask "Question" --provider llamacpp --model qwen3
 
 ## Performance
 
-chuk-llm is designed for production with negligible overhead:
+chuk-llm is designed for high throughput with negligible overhead:
 
 ### Key Metrics
 
@@ -664,7 +664,7 @@ uv run python benchmarks/llm_benchmark.py
 
 ## Architecture
 
-ChukLLM uses a **registry-driven, async-native architecture** optimized for production use:
+ChukLLM uses a **registry-driven, async-native architecture** designed for scale:
 
 ### 🏗️ Core Design Principles
 
@@ -804,13 +804,12 @@ Instead of hardcoding "use GPT-4o", CHUK components declare **what they need**, 
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+Apache 2.0 License - see [LICENSE](LICENSE) file for details.
 
 ## Support
 
 - 🐛 [Issues](https://github.com/chrishayuk/chuk-llm/issues)
 - 💬 [Discussions](https://github.com/chrishayuk/chuk-llm/discussions)
-- 📧 [Email](mailto:chrishayuk@somejunkmailbox.com)
 
 ---
 

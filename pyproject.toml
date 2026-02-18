@@ -4,21 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chuk-llm"
-version = "0.17.1"
-description = "A unified, production-ready Python library for Large Language Model (LLM) providers with real-time streaming, function calling, middleware support, automatic session tracking, dynamic model discovery, and intelligent system prompt generation."
+version = "0.18"
+description = "A unified Python library for Large Language Model (LLM) providers with real-time streaming, function calling, middleware support, automatic session tracking, dynamic model discovery, and intelligent system prompt generation."
 readme = "README.md"
-authors = [
-  { name = "Chris Hay", email = "chrishayuk@somejunkmailbox.com" }
-]
-maintainers = [
-  { name = "Chris Hay", email = "chrishayuk@somejunkmailbox.com" }
-]
-license = { text = "MIT" }
+license = { text = "Apache-2.0" }
 requires-python = ">=3.11"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
@@ -45,7 +39,7 @@ dependencies = [
     "aiohttp>=3.12.15",
     "anthropic>=0.62.0",
     "asyncio>=4.0.0",
-    "chuk-ai-session-manager>=0.7",
+    "chuk-ai-session-manager>=0.8.2",
     "google-genai>=1.29.0",
     "groq>=0.25.0",
     "httpx>=0.28.1",
@@ -70,7 +64,7 @@ Changelog = "https://github.com/chrishayuk/chuk-llm/releases"
 [project.optional-dependencies]
 # Redis support for persistent session storage
 redis = [
-    "chuk-ai-session-manager[redis]>=0.7",
+    "chuk-ai-session-manager[redis]>=0.8.2",
 ]
 watsonx = ["ibm-watsonx-ai", "jinja2>=3.1.6", "transformers>=4.53.2"]
 

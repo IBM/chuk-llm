@@ -6,14 +6,14 @@ All constant values used throughout the codebase.
 No magic strings allowed!
 """
 
-from enum import Enum
+from enum import StrEnum
 
 # ================================================================
 # HTTP Constants
 # ================================================================
 
 
-class HttpMethod(str, Enum):
+class HttpMethod(StrEnum):
     """HTTP request methods."""
 
     GET = "GET"
@@ -23,7 +23,7 @@ class HttpMethod(str, Enum):
     PATCH = "PATCH"
 
 
-class HttpHeader(str, Enum):
+class HttpHeader(StrEnum):
     """Common HTTP headers."""
 
     AUTHORIZATION = "Authorization"
@@ -33,7 +33,7 @@ class HttpHeader(str, Enum):
     ACCEPT = "Accept"
 
 
-class ContentTypeValue(str, Enum):
+class ContentTypeValue(StrEnum):
     """Content-Type header values."""
 
     JSON = "application/json"
@@ -46,7 +46,7 @@ class ContentTypeValue(str, Enum):
 # ================================================================
 
 
-class OpenAIEndpoint(str, Enum):
+class OpenAIEndpoint(StrEnum):
     """OpenAI API endpoints."""
 
     CHAT_COMPLETIONS = "/chat/completions"
@@ -55,7 +55,7 @@ class OpenAIEndpoint(str, Enum):
     MODELS = "/models"
 
 
-class AnthropicEndpoint(str, Enum):
+class AnthropicEndpoint(StrEnum):
     """Anthropic API endpoints."""
 
     MESSAGES = "/v1/messages"
@@ -67,7 +67,7 @@ class AnthropicEndpoint(str, Enum):
 # ================================================================
 
 
-class ApiBaseUrl(str, Enum):
+class ApiBaseUrl(StrEnum):
     """Default API base URLs for each provider."""
 
     OPENAI = "https://api.openai.com/v1"
@@ -88,7 +88,7 @@ class ApiBaseUrl(str, Enum):
 # ================================================================
 
 
-class SSEPrefix(str, Enum):
+class SSEPrefix(StrEnum):
     """Server-Sent Events prefixes."""
 
     DATA = "data: "
@@ -97,7 +97,7 @@ class SSEPrefix(str, Enum):
     RETRY = "retry: "
 
 
-class SSEEvent(str, Enum):
+class SSEEvent(StrEnum):
     """SSE event types."""
 
     MESSAGE = "message"
@@ -110,7 +110,7 @@ class SSEEvent(str, Enum):
 # ================================================================
 
 
-class ToolType(str, Enum):
+class ToolType(StrEnum):
     """Tool/function call types."""
 
     FUNCTION = "function"
@@ -121,7 +121,7 @@ class ToolType(str, Enum):
 # ================================================================
 
 
-class ReasoningGeneration(str, Enum):
+class ReasoningGeneration(StrEnum):
     """Reasoning model generations."""
 
     O1 = "o1"
@@ -137,7 +137,7 @@ class ReasoningGeneration(str, Enum):
 # ================================================================
 
 
-class ResponseKey(str, Enum):
+class ResponseKey(StrEnum):
     """Common API response keys."""
 
     CHOICES = "choices"
@@ -171,7 +171,7 @@ class ResponseKey(str, Enum):
 # ================================================================
 
 
-class ErrorType(str, Enum):
+class ErrorType(StrEnum):
     """LLM error types."""
 
     AUTHENTICATION_ERROR = "authentication_error"
@@ -191,7 +191,7 @@ class ErrorType(str, Enum):
 # ================================================================
 
 
-class RequestParam(str, Enum):
+class RequestParam(StrEnum):
     """API request parameter names (Chat Completions API)."""
 
     MODEL = "model"
@@ -209,7 +209,7 @@ class RequestParam(str, Enum):
     LOGIT_BIAS = "logit_bias"
 
 
-class ResponsesRequestParam(str, Enum):
+class ResponsesRequestParam(StrEnum):
     """API request parameter names (Responses API)."""
 
     MODEL = "model"
@@ -237,7 +237,7 @@ class ResponsesRequestParam(str, Enum):
 # ================================================================
 
 
-class ConfigKey(str, Enum):
+class ConfigKey(StrEnum):
     """Configuration keys."""
 
     PROVIDERS = "providers"
@@ -263,7 +263,7 @@ class ConfigKey(str, Enum):
     MAX_TOKENS = "max_tokens"
 
 
-class CapabilityKey(str, Enum):
+class CapabilityKey(StrEnum):
     """Model capability flag names."""
 
     SUPPORTS_TEXT = "supports_text"
@@ -276,7 +276,7 @@ class CapabilityKey(str, Enum):
     SUPPORTS_REASONING = "supports_reasoning"
 
 
-class AzureOpenAIParam(str, Enum):
+class AzureOpenAIParam(StrEnum):
     """Azure OpenAI specific configuration parameters."""
 
     API_VERSION = "api_version"
@@ -285,7 +285,7 @@ class AzureOpenAIParam(str, Enum):
     API_KEY = "api_key"
 
 
-class ToolParam(str, Enum):
+class ToolParam(StrEnum):
     """Tool/function call parameter names."""
 
     TYPE = "type"
@@ -303,7 +303,7 @@ class ToolParam(str, Enum):
 # ================================================================
 
 
-class EnvVar(str, Enum):
+class EnvVar(StrEnum):
     """Environment variable names."""
 
     # OpenAI
