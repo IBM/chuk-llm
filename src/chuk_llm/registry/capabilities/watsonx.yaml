@@ -1,0 +1,86 @@
+# Capability cache for watsonx
+# Created to enable tool support for IBM watsonx.ai models
+provider: watsonx
+last_updated: '2026-04-23T16:01:00.000000'
+families: {}
+models:
+  meta-llama/llama-3-3-70b-instruct:
+    tested_at: '2026-04-23T16:01:00.000000'
+    supports_chat: true
+    supports_tools: true
+    supports_text: true
+    supports_vision: false
+    supports_streaming: true
+    max_context: 128000
+  meta-llama/llama-3-2-11b-vision-instruct:
+    tested_at: '2026-04-23T16:01:00.000000'
+    supports_chat: true
+    supports_tools: true
+    supports_text: true
+    supports_vision: true
+    supports_streaming: true
+    max_context: 128000
+  meta-llama/llama-4-maverick-17b-128e-instruct-fp8:
+    tested_at: '2026-04-23T16:01:00.000000'
+    supports_chat: true
+    supports_tools: true
+    supports_text: true
+    supports_vision: false
+    supports_streaming: true
+    max_context: 128000
+  mistralai/mistral-medium-2505:
+    tested_at: '2026-04-23T16:01:00.000000'
+    supports_chat: true
+    supports_tools: true
+    supports_text: true
+    supports_vision: false
+    supports_streaming: true
+    max_context: 32000
+  mistralai/mistral-small-3-1-24b-instruct-2503:
+    tested_at: '2026-04-23T16:01:00.000000'
+    supports_chat: true
+    supports_tools: true
+    supports_text: true
+    supports_vision: false
+    supports_streaming: true
+    max_context: 32000
+  meta-llama/llama-3-1-70b-gptq:
+    tested_at: '2026-04-23T16:01:00.000000'
+    supports_chat: true
+    supports_tools: true
+    supports_text: true
+    supports_vision: false
+    supports_streaming: true
+    max_context: 128000
+  meta-llama/llama-3-1-8b:
+    tested_at: '2026-04-23T16:01:00.000000'
+    supports_chat: true
+    supports_tools: true
+    supports_text: true
+    supports_vision: false
+    supports_streaming: true
+    max_context: 128000
+  sdaia/allam-1-13b-instruct:
+    tested_at: '2026-04-23T16:01:00.000000'
+    supports_chat: true
+    supports_tools: true
+    supports_text: true
+    supports_vision: false
+    supports_streaming: true
+    max_context: 8192
+  ibm/granite-3-1-8b-base:
+    tested_at: '2026-04-23T16:01:00.000000'
+    supports_chat: true
+    supports_tools: true
+    supports_text: true
+    supports_vision: false
+    supports_streaming: true
+    max_context: 8192
+  openai/gpt-oss-120b:
+    tested_at: '2026-04-23T16:01:00.000000'
+    supports_chat: true
+    supports_tools: true
+    supports_text: true
+    supports_vision: false
+    supports_streaming: true
+    max_context: 128000
