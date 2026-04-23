@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chuk-llm"
-version = "0.18"
+version = "0.19"
 description = "A unified Python library for Large Language Model (LLM) providers with real-time streaming, function calling, middleware support, automatic session tracking, dynamic model discovery, and intelligent system prompt generation."
 readme = "README.md"
 license = { text = "Apache-2.0" }

@@ -1467,7 +1467,7 @@ class WatsonXLLMClient(
                 model = self._get_model_inference(params)
 
                 # For Granite chat templates, use generate_text_stream
-                stream_response = model.generate_text_stream(prompt=messages)
+                stream_response = model.generate_text_stream(prompt=formatted_messages)
 
                 accumulated_text = ""
 
