@@ -1,98 +1,81 @@
-name: Release
+name: Create Release
 
 on:
   push:
     tags:
-      - 'v*'
+      - 'v*.*.*'
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Version to release (e.g., v1.0.0)'
+      tag:
+        description: 'Tag to create release for (e.g., v0.20.1)'
         required: true
         type: string
 
-env:
-  PYTHON_VERSION: '3.11'
-
 jobs:
-  build-and-publish:
-    name: Build and Publish to PyPI
+  create-release:
     runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://pypi.org/p/chuk-llm
     permissions:
-      id-token: write
       contents: write
 
     steps:
-      - uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
+    - uses: actions/checkout@v7
+      with:
+        fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
+    - name: Get version from tag
+      id: get_version
+      run: |
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          TAG=${{ inputs.tag }}
+        else
+          TAG=${GITHUB_REF#refs/tags/}
+        fi
+        VERSION=${TAG#v}
+        echo "tag=${TAG}" >> $GITHUB_OUTPUT
+        echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v8.3.2
-        with:
-          enable-cache: true
+    - name: Verify version matches pyproject.toml
+      run: |
+        PYPROJECT_VERSION=$(grep '^version = ' pyproject.toml | cut -d'"' -f2)
+        if [ "${{ steps.get_version.outputs.version }}" != "${PYPROJECT_VERSION}" ]; then
+          echo "Error: Tag version (${{ steps.get_version.outputs.version }}) does not match pyproject.toml version (${PYPROJECT_VERSION})"
+          exit 1
+        fi
 
-      - name: Install build dependencies
-        run: |
-          pip install build twine
+    - name: Get previous tag
+      id: get_previous_tag
+      run: |
+        PREVIOUS_TAG=$(git tag --sort=-version:refname | grep -A1 "${{ steps.get_version.outputs.tag }}" | tail -1)
+        if [ -z "$PREVIOUS_TAG" ] || [ "$PREVIOUS_TAG" = "${{ steps.get_version.outputs.tag }}" ]; then
+          # If no previous tag, use first commit
+          PREVIOUS_TAG=$(git rev-list --max-parents=0 HEAD)
+        fi
+        echo "previous_tag=${PREVIOUS_TAG}" >> $GITHUB_OUTPUT
 
-      - name: Build distribution
-        run: |
-          uv build
+    - name: Generate changelog
+      id: changelog
+      run: |
+        echo "## What's Changed" > RELEASE_NOTES.md
+        echo "" >> RELEASE_NOTES.md
 
-      - name: Check distribution
-        run: |
-          twine check dist/*
+        # Get commits since last tag
+        git log ${{ steps.get_previous_tag.outputs.previous_tag }}..${{ steps.get_version.outputs.tag }} \
+          --pretty=format:"* %s (%h)" \
+          --no-merges >> RELEASE_NOTES.md
 
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          skip-existing: true
+        echo "" >> RELEASE_NOTES.md
+        echo "" >> RELEASE_NOTES.md
+        echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${{ steps.get_previous_tag.outputs.previous_tag }}...${{ steps.get_version.outputs.tag }}" >> RELEASE_NOTES.md
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v3
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          files: dist/*
-          generate_release_notes: true
-          draft: false
-          prerelease: false
+        cat RELEASE_NOTES.md
 
-  test-installation:
-    name: Test Installation
-    needs: build-and-publish
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ['3.11', '3.12']
-
-    steps:
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Wait for PyPI to update
-        run: |
-          sleep 60
-
-      - name: Install from PyPI
-        run: |
-          pip install chuk-llm
-
-      - name: Test import
-        run: |
-          python -c "import chuk_llm; print(f'Successfully imported chuk_llm version {chuk_llm.__version__}')"
-
-      - name: Test CLI
-        run: |
-          chuk-llm --help
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v3
+      with:
+        tag_name: ${{ steps.get_version.outputs.tag }}
+        name: Release ${{ steps.get_version.outputs.tag }}
+        body_path: RELEASE_NOTES.md
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

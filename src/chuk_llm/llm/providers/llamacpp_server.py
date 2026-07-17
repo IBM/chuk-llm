@@ -191,7 +191,7 @@ class LlamaCppServerManager:
                     )
                     if response.status_code == 200:
                         break
-                except (httpx.ConnectError, httpx.ReadTimeout):
+                except (httpx.ConnectError, httpx.TimeoutException):
                     pass
 
                 # Check if process died
@@ -249,7 +249,7 @@ class LlamaCppServerManager:
                             f"Got response code {test_response.status_code} during startup, "
                             "continuing to wait for 200..."
                         )
-                except (httpx.ConnectError, httpx.ReadTimeout):
+                except (httpx.ConnectError, httpx.TimeoutException):
                     pass
 
                 # Check if process died
@@ -305,7 +305,7 @@ class LlamaCppServerManager:
                 # Use /v1/models instead of /health (not all versions have /health)
                 response = await client.get(f"{self._base_url}/v1/models")
                 return response.status_code == 200
-        except (httpx.ConnectError, httpx.ReadTimeout):
+        except (httpx.ConnectError, httpx.TimeoutException):
             return False
 
     async def __aenter__(self):

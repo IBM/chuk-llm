@@ -145,8 +145,14 @@ class TestLlamaCppServerManager:
         mock_process.returncode = None
         manager.process = mock_process
 
-        with pytest.raises(TimeoutError, match="Server startup timed out"):
-            await manager._wait_for_health(timeout=0.1)
+        # Mock the HTTP client to avoid actual network calls
+        with patch("httpx.AsyncClient") as mock_client:
+            mock_client.return_value.__aenter__.return_value.get = AsyncMock(
+                side_effect=httpx.ConnectError("Connection refused")
+            )
+
+            with pytest.raises(TimeoutError, match="Server startup timed out"):
+                await manager._wait_for_health(timeout=0.1)
 
     @pytest.mark.asyncio
     async def test_wait_for_health_process_died(self):
@@ -228,8 +234,12 @@ class TestLlamaCppServerManager:
 
         # Mock the server startup to avoid actual process creation
         with (
-            patch.object(LlamaCppServerManager, "start", new_callable=AsyncMock) as mock_start,
-            patch.object(LlamaCppServerManager, "stop", new_callable=AsyncMock) as mock_stop,
+            patch.object(
+                LlamaCppServerManager, "start", new_callable=AsyncMock
+            ) as mock_start,
+            patch.object(
+                LlamaCppServerManager, "stop", new_callable=AsyncMock
+            ) as mock_stop,
         ):
             async with LlamaCppServerManager(config) as manager:
                 assert manager is not None
